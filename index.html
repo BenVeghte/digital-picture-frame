@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digitial Picture Frame</title>
+    <style>
+        
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            padding: 0;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .container {
+            position: relative;
+            height: 100%;
+        }
+        .top-left {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            padding-left: 15px;
+            padding-right: 15px;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body style="background-color: black;">
+    <div class="container">
+        <div class="top-left" id = "pathtext" ></div>
+        <img id="img-stream" src="" />
+        
+    </div>
+    
+
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io.connect()
+        var imgChunks = "";
+
+        socket.on('img-new', chunk => {
+            imgChunks = '';
+        });
+
+        socket.on('img-chunk', chunk => {
+            imgChunks= imgChunks.concat(chunk);
+            
+        });
+        socket.on('img-end', chunk => {
+            var img = document.getElementById('img-stream');
+            img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
+        });
+        socket.on('img-path', path => {
+            var img = document.getElementById('img-stream');
+            img.setAttribute('title', path)
+            var pathtext = document.getElementById('pathtext');
+            pathtext.innerHTML = path;
+        })
+
+    </script>
+</body>
+</html>
+

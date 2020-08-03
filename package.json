@@ -1,0 +1,17 @@
+{
+  "name": "digital-picture-frame",
+  "version": "1.0.0",
+  "description": "Personal Picture Frame Website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Ben Veghte",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jimp": "^0.14.0",
+    "socket.io": "^2.3.0"
+  }
+}
