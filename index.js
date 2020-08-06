@@ -100,7 +100,7 @@ function getnewimg() {
             } else {
                 count ++;
                 try {
-                    currpath.slice(0, currpath.lastIndexof('\\'));
+                    currpath.slice(0, currpath.lastIndexOf('\\'));
                 } catch(err) {
                     console.log(err);
                 }
