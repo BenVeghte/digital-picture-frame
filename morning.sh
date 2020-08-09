@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /home/BenVeghte/pre-docker-storage/digital-picture-frame/
+. /home/BenVeghte/pre-docker-storage/digital-picture-frame/
 git pull &
 sleep 15s
 chmod -x morning.sh
