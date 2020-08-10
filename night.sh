@@ -1,6 +1,7 @@
 #!/bin/bash
-docker container stop picture-frame-server &
-sleep 15s
-pkill chromium &
+docker container stop picture-frame-server 
+wait
+pkill chromium
+wait
 export DISPLAY=:0
 xset dpms force off
