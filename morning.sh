@@ -16,6 +16,8 @@ docker run --rm -p 3000:3000 -v /home/BenVeghte/Ansel:/NAS --name picture-frame-
 sleep 15s
 
 /usr/bin/chromium --noerrdialogs --disable-infobars --kiosk http://localhost:3000 &
+export DISPLAY=:0
+xset s noblank
 xset dpms force on
 
 
