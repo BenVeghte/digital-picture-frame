@@ -1,5 +1,4 @@
 #!/bin/bash
-touch itexecuted.txt
 git pull &
 sleep 15s
 chmod -x morning.sh
