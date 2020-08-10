@@ -12,8 +12,7 @@ wait
 docker build -t digitalpictureframeserver . 
 wait
 
-docker run --rm -p 3000:3000 -v /home/BenVeghte/Ansel:/NAS --name picture-frame-server digitalpictureframeserver 
-wait
+docker run --rm -p 3000:3000 -v /home/BenVeghte/Ansel:/NAS --name picture-frame-server digitalpictureframeserver &
 export DISPLAY=:0
 xset s noblank
 wait
