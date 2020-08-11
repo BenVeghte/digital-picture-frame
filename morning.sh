@@ -1,8 +1,6 @@
 #!/bin/bash
 git pull 
 wait
-chmod +x morning.sh
-chmod +x night.sh
 
 docker image rm digitalpictureframeserver
 wait
