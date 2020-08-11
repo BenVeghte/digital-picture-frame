@@ -2,7 +2,7 @@ var fs = require('fs'),
     Jimp = require('jimp'),
     path = require('path'),
     express =require('express'),
-    app = express();
+    app = express(),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
     mainimg = __dirname + '/mainimg.jpg',
@@ -17,6 +17,11 @@ getnewimg();
 //Send HTML file for core page
 app.get('/', function(req, res) {
     res.sendFile(__dirname+'/index.html');
+});
+app.get('/changefolder', (req, res) => {
+    res.sendfileq(__dirname+'/changefolder.html');
+    dayfolder = '/NAS';
+    imgpath = '';
 });
 
 
