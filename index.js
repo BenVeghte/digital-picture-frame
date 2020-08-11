@@ -8,6 +8,7 @@ var fs = require('fs'),
     mainimg = __dirname + '/mainimg.jpg',
     dayfolder = '/NAS',
     imgpath = '',
+    lastimg = '',
     getimgtimer = setInterval(getnewimg, 30000);
     
 app.use(express.static(__dirname + '/node_modules'));
@@ -19,11 +20,17 @@ app.get('/', function(req, res) {
     res.sendFile(__dirname+'/index.html');
 });
 app.get('/changefolder', (req, res) => {
-    res.sendfileq(__dirname+'/changefolder.html');
+    res.sendFile(__dirname+'/changefolder.html');
     dayfolder = '/NAS';
     imgpath = '';
 });
 
+/*
+app.get('/goodimg', (req, res) => {
+    res.sendFile(__dirname +'goodimg.html');
+
+})
+*/
 
 server.listen(3000);
 io.on('connect', socket => {
