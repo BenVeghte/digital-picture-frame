@@ -13,7 +13,8 @@ var fs = require('fs'),
     lastimg = '',
     getimgtimer = setInterval(getnewimg, 30000);
     
-app.use(express.static(__dirname + '/node_modules'));
+//app.use(express.static(__dirname + '/node_modules'));
+
 
 getnewimg();
 
@@ -34,7 +35,7 @@ app.get('/changefolder', (req, res) => {
 app.get('/goodimg', (req, res) => {
     res.sendFile(__dirname +'goodimg.html');
     console.log("Image marked as good");
-    writer = fs.createWriteStream(__dirname+'/goodbadimgs/goodimgs.txt', {
+    writer = fs.createWriteStream('/goodbadimgs/goodimgs.txt', {
         flags: 'a'
     });
     writer.write('//Ansel/Pictures' + imgpath.slice(4));
@@ -43,7 +44,7 @@ app.get('/goodimg', (req, res) => {
 app.get('/badimg', (req, res) => {
     res.sendFile(__dirname +'badimg.html');
     console.log("Image marked as bad");
-    writer = fs.createWriteStream(__dirname+'/goodbadimgs/badimgs.txt', {
+    writer = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
         flags: 'a'
     });
     writer.write('//Ansel/Pictures' + imgpath.slice(4));
