@@ -1,3 +1,5 @@
+const { writer } = require('repl');
+
 var fs = require('fs'),
     Jimp = require('jimp'),
     path = require('path'),
@@ -19,18 +21,30 @@ getnewimg();
 app.get('/', function(req, res) {
     res.sendFile(__dirname+'/index.html');
 });
+
+//Page that changes the folder to be used at next image grab
 app.get('/changefolder', (req, res) => {
     res.sendFile(__dirname+'/changefolder.html');
     dayfolder = '/NAS';
     imgpath = '';
 });
 
-/*
+//Adds the current image to the list of good images
 app.get('/goodimg', (req, res) => {
     res.sendFile(__dirname +'goodimg.html');
+    writer = fs.createWriteStream('./goodbadimgs/goodimgs.txt', {
+        flags: 'a'
+    });
+    writer.write('//Ansel/Pictures' + imgpath.slice(4));
+});
 
-})
-*/
+app.get('/badimg', (req, res) => {
+    res.sendFile(__dirname +'badimg.html');
+    writer = fs.createWriteStream('./goodbadimgs/badimgs.txt', {
+        flags: 'a'
+    });
+    writer.write('//Ansel/Pictures' + imgpath.slice(4));
+});
 
 server.listen(3000);
 io.on('connect', socket => {
