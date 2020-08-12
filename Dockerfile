@@ -1,5 +1,5 @@
 FROM node:12
-WORKDIR /home/BenVeghte/docker/digital_picture_frame/
+WORKDIR /src/
 COPY package*.json ./
 RUN npm ci --only=production
 COPY index.html .
