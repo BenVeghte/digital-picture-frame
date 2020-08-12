@@ -24,6 +24,7 @@ app.get('/', function(req, res) {
 
 //Page that changes the folder to be used at next image grab
 app.get('/changefolder', (req, res) => {
+    console.log("Changing folder")
     res.sendFile(__dirname+'/changefolder.html');
     dayfolder = '/NAS';
     imgpath = '';
@@ -32,7 +33,8 @@ app.get('/changefolder', (req, res) => {
 //Adds the current image to the list of good images
 app.get('/goodimg', (req, res) => {
     res.sendFile(__dirname +'goodimg.html');
-    writer = fs.createWriteStream('./goodbadimgs/goodimgs.txt', {
+    console.log("Image marked as good");
+    writer = fs.createWriteStream(__dirname+'/goodbadimgs/goodimgs.txt', {
         flags: 'a'
     });
     writer.write('//Ansel/Pictures' + imgpath.slice(4));
@@ -40,7 +42,8 @@ app.get('/goodimg', (req, res) => {
 
 app.get('/badimg', (req, res) => {
     res.sendFile(__dirname +'badimg.html');
-    writer = fs.createWriteStream('./goodbadimgs/badimgs.txt', {
+    console.log("Image marked as bad");
+    writer = fs.createWriteStream(__dirname+'/goodbadimgs/badimgs.txt', {
         flags: 'a'
     });
     writer.write('//Ansel/Pictures' + imgpath.slice(4));
