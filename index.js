@@ -33,7 +33,7 @@ app.get('/changefolder', (req, res) => {
 
 //Adds the current image to the list of good images
 app.get('/goodimg', (req, res) => {
-    res.sendFile(__dirname +'goodimg.html');
+    res.sendFile(__dirname +'/goodimg.html');
     console.log("Image marked as good");
     writer = fs.createWriteStream('/goodbadimgs/goodimgs.txt', {
         flags: 'a'
@@ -42,7 +42,7 @@ app.get('/goodimg', (req, res) => {
 });
 
 app.get('/badimg', (req, res) => {
-    res.sendFile(__dirname +'badimg.html');
+    res.sendFile(__dirname +'/badimg.html');
     console.log("Image marked as bad");
     writer = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
         flags: 'a'
