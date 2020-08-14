@@ -6,6 +6,6 @@ COPY index.html .
 COPY index.js .
 COPY changefolder.html .
 COPY badimg.html . 
-COPT goodimg.html .
+COPY goodimg.html .
 EXPOSE 3000
 CMD ["node", "index.js"]

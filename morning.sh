@@ -17,7 +17,7 @@ xset dpms force on
 xset s noblank
 xset s off
 xset -dpms
-/usr/bin/chromium --noerrdialogs --disable-infobars --kiosk http://localhost:3000
+/usr/bin/chromium-browser --noerrdialogs --disable-infobars --kiosk http://localhost:3000
 
 
 
