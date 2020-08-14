@@ -1,5 +1,3 @@
-const { writer } = require('repl');
-
 var fs = require('fs'),
     Jimp = require('jimp'),
     path = require('path'),
@@ -35,19 +33,19 @@ app.get('/changefolder', (req, res) => {
 app.get('/goodimg', (req, res) => {
     res.sendFile(__dirname +'/goodimg.html');
     console.log("Image marked as good");
-    writer = fs.createWriteStream('/goodbadimgs/goodimgs.txt', {
+    var filewrite = fs.createWriteStream('/goodbadimgs/goodimgs.txt', {
         flags: 'a'
     });
-    writer.write('//Ansel/Pictures' + imgpath.slice(4));
+    filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
 });
 
 app.get('/badimg', (req, res) => {
     res.sendFile(__dirname +'/badimg.html');
     console.log("Image marked as bad");
-    writer = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
+    var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
         flags: 'a'
     });
-    writer.write('//Ansel/Pictures' + imgpath.slice(4));
+    filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
 });
 
 server.listen(3000);
