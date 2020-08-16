@@ -17,7 +17,7 @@ xset dpms force on
 xset s noblank
 xset s off
 xset -dpms
-/usr/bin/chromium-browser --check-for-update-interval-604800 --noerrdialogs --disable-infobars --kiosk http://localhost:3000
+/usr/bin/chromium-browser --check-for-update-interval=604800 --noerrdialogs --disable-infobars --kiosk http://localhost:3000
 
 
 
