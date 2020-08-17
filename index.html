@@ -41,7 +41,7 @@
 <body style="background-color: black;">
     <div class="container">
         <div class="top-left" id = "pathtext" >Bruh</div>
-        <img id="img-stream" src="test.jpg" />
+        <img id="img-stream"/>
         
     </div>
     
@@ -58,9 +58,6 @@
 
         socket.on('img-chunk', chunk => {
             imgChunks= imgChunks.concat(chunk);
-            img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
-        });
-        socket.on('img-end', chunk => {
             var img = document.getElementById('img-stream');
             img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
         });
