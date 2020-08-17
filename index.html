@@ -58,7 +58,7 @@
 
         socket.on('img-chunk', chunk => {
             imgChunks= imgChunks.concat(chunk);
-            
+            img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
         });
         socket.on('img-end', chunk => {
             var img = document.getElementById('img-stream');

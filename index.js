@@ -62,25 +62,18 @@ io.on('connection', (socket) => {
         encoding: 'binary'
     });
     socket.emit('img-new', "");
-
-    readStream.on('end', () => {
-            //console.log('All data taken'); 
-            socket.emit('img-end', '')  
-        });
+    
     readStream.on('data', chunk => {
             //console.log(chunk);
             //console.log("Sending Data");
             socket.emit('img-chunk', chunk);
         });
-
+    
     readStream.on('error', (err) => {
             console.log(err);
-            
+            //console.log("Error reading image")
         });
-    readStream.on('close', () => {
-        readStream.destroy();
-        //console.log("File has been closed");
-    });
+
     socket.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
 
     
@@ -136,12 +129,6 @@ function getnewimg() {
             }
         }
     }
-    try {
-        fs.unlinkSync(mainimg);
-    } catch(err) {
-        console.error(err);
-        //console.log("Error deleteing file")
-    }
 
     imgresize();
     return
@@ -186,10 +173,6 @@ function pushimg() {
     });
     io.emit('img-new', "");
     
-    readStream.on('end', () => {
-            //console.log('All data taken');   
-            io.emit('img-end', '')
-        });
     readStream.on('data', chunk => {
             //console.log(chunk);
             //console.log("Sending Data");
@@ -200,10 +183,7 @@ function pushimg() {
             console.log(err);
             //console.log("Error reading image")
         });
-    readStream.on('close', () => {
-        readStream.destroy();
-        //console.log("File has been closed");
-    });
+
     io.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
 }
 
