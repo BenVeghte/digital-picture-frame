@@ -48,7 +48,7 @@ app.get('/badimg', (req, res) => {
     filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
 });
 
-server.listen(3000);
+server.listen(3000, '0.0.0.0');
 io.on('connect', socket => {
     console.log('Connection is being made')
 });
