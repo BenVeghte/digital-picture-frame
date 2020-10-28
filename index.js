@@ -55,28 +55,9 @@ io.on('connect', socket => {
 
 
 io.on('connection', (socket) => {
-    console.log('Connected')
-    //console.log(socket);
+    console.log('Connected');
+    newConnection(socket);
 
-    var readStream = fs.createReadStream(mainimg, {
-        encoding: 'binary'
-    });
-    socket.emit('img-new', "");
-    
-    readStream.on('data', chunk => {
-            //console.log(chunk);
-            //console.log("Sending Data");
-            socket.emit('img-chunk', chunk);
-        });
-    
-    readStream.on('error', (err) => {
-            console.log(err);
-            //console.log("Error reading image")
-        });
-
-    socket.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
-
-    
 });
 
 
@@ -181,10 +162,36 @@ function pushimg() {
     
     readStream.on('error', (err) => {
             console.log(err);
+            readStream.destroy();
+            pushimg();
+            break;
             //console.log("Error reading image")
         });
 
     io.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
+}
+
+function newConnection(socket) {
+    var readStream = fs.createReadStream(mainimg, {
+        encoding: 'binary'
+    });
+    socket.emit('img-new', "");
+    
+    readStream.on('data', chunk => {
+            //console.log(chunk);
+            //console.log("Sending Data");
+            socket.emit('img-chunk', chunk);
+        });
+    
+    readStream.on('error', (err) => {
+            console.log(err);
+            readStream.destroy();
+            newConnection(socket);
+            break;
+            //console.log("Error reading image")
+        });
+
+    socket.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
 }
 
 
