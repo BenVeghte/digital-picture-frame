@@ -164,7 +164,7 @@ function pushimg() {
             console.log(err);
             readStream.destroy();
             pushimg();
-            break;
+            return
             //console.log("Error reading image")
         });
 
@@ -187,7 +187,7 @@ function newConnection(socket) {
             console.log(err);
             readStream.destroy();
             newConnection(socket);
-            break;
+            return
             //console.log("Error reading image")
         });
 
