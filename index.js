@@ -163,7 +163,7 @@ function pushimg() {
     readStream.on('error', (err) => {
             console.log(err);
             readStream.destroy();
-            pushimg();
+            getnewimg();
             return
             //console.log("Error reading image")
         });
@@ -186,7 +186,7 @@ function newConnection(socket) {
     readStream.on('error', (err) => {
             console.log(err);
             readStream.destroy();
-            newConnection(socket);
+            getnewimg();
             return
             //console.log("Error reading image")
         });
