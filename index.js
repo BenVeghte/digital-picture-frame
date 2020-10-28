@@ -163,6 +163,10 @@ function pushimg() {
     readStream.on('error', (err) => {
             console.log(err);
             readStream.destroy();
+            var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
+                flags: 'a'
+            });
+            filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
             getnewimg();
             return
             //console.log("Error reading image")
@@ -186,6 +190,10 @@ function newConnection(socket) {
     readStream.on('error', (err) => {
             console.log(err);
             readStream.destroy();
+            var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
+                flags: 'a'
+            });
+            filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
             getnewimg();
             return
             //console.log("Error reading image")
