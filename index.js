@@ -162,10 +162,9 @@ function pushimg() {
     
     readStream.on('error', (err) => {
             console.log(err);
+            console.log("Error in pushing mass update");
+            console.log(imgpath);
             readStream.destroy();
-            var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
-                flags: 'a'
-            });
             filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
             getnewimg();
             return
@@ -189,10 +188,9 @@ function newConnection(socket) {
     
     readStream.on('error', (err) => {
             console.log(err);
+            console.log("Error in new connection");
+            console.log(imgpath);
             readStream.destroy();
-            var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
-                flags: 'a'
-            });
             filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
             getnewimg();
             return
