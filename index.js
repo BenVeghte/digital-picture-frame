@@ -101,6 +101,7 @@ function getnewimg() {
                     currpath.slice(0, currpath.lastIndexOf('\\\\'));
                 } catch(err) {
                     console.log(err);
+                    console.log("Error in getting new image");
                 }
                 
             }
