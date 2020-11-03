@@ -7,7 +7,7 @@ var fs = require('fs'),
     dayfolder = '/NAS',
     imgpath = '',
     lastimg = '',
-    getimgtimer = setInterval(getnewimg, 30000);
+    getimgtimer = setInterval(getnewimg, 45000);
     
 //app.use(express.static(__dirname + '/node_modules'));
 
