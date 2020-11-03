@@ -125,7 +125,7 @@ function pushimg() {
     
     readStream.on('error', (err) => {
             console.log(err);
-            console.log("Error in pushing mass update");
+            console.log("Error in reading the image");
             console.log(imgpath);
             readStream.destroy();
             getnewimg();
@@ -150,11 +150,9 @@ function newConnection(socket) {
     
     readStream.on('error', (err) => {
             console.log(err);
-            console.log("Error in new connection");
+            console.log("Error in reading the image");
             console.log(imgpath);
             readStream.destroy();
-            filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
-            getnewimg();
             return
             //console.log("Error reading image")
         });
