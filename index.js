@@ -1,11 +1,9 @@
 var fs = require('fs'),
-    Jimp = require('jimp'),
     path = require('path'),
     express =require('express'),
     app = express(),
     server = require('http').createServer(app),
     io = require('socket.io')(server),
-    mainimg = __dirname + '/mainimg.jpg',
     dayfolder = '/NAS',
     imgpath = '',
     lastimg = '',
@@ -108,45 +106,13 @@ function getnewimg() {
         }
     }
 
-    imgresize();
-    return
-}
-
-async function imgresize() {
-    const img = await Jimp.read(imgpath);
-    var h = img.bitmap.height;
-    var w = img.bitmap.width;
-    var curraspect = w/h,
-        aspectratio = 2560/1440;
-    if (curraspect>aspectratio) {
-        if (w>2560) {
-            //console.log("Writing Image");
-            await img.resize(2560, h/(w/2560))
-            await img.writeAsync(mainimg);
-        } else {
-            //console.log("Writing Image");
-            await img.writeAsync(mainimg);
-        }
-    } else if (aspectratio>curraspect) {
-        if (h > 1440) {
-            //console.log("Writing Image");
-            await img.resize(w/(h/1440),1440);
-            await img.writeAsync(mainimg);
-        } else {
-            //console.log("Writing Image");
-            await img.writeAsync(mainimg);
-        }
-    } else {
-        //console.log("Writing Image");
-        await img.resize(2560,1440);
-        await img.writeAsync(mainimg);
-    }
     pushimg();
+    return
 }
 
 function pushimg() {
     //console.log('sending new image');
-    var readStream = fs.createReadStream(mainimg, {
+    var readStream = fs.createReadStream(imgpath, {
         encoding: 'binary'
     });
     io.emit('img-new', "");
@@ -171,7 +137,7 @@ function pushimg() {
 }
 
 function newConnection(socket) {
-    var readStream = fs.createReadStream(mainimg, {
+    var readStream = fs.createReadStream(imgpath, {
         encoding: 'binary'
     });
     socket.emit('img-new', "");
