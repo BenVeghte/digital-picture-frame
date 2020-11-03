@@ -40,6 +40,10 @@ app.get('/goodimg', (req, res) => {
 app.get('/badimg', (req, res) => {
     res.sendFile(__dirname +'/badimg.html');
     console.log("Image marked as bad");
+    var filewrite = fs.createWriteStream('/goodbadimgs/badimgs.txt', {
+        flags: 'a'
+    });
+    filewrite.write('//Ansel/Pictures' + imgpath.slice(4));
 });
 
 server.listen(3000, '0.0.0.0');
