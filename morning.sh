@@ -12,7 +12,7 @@ docker build -t digitalpictureframeserver .
 wait
 
 docker run --restart on-failure -p 3000:3000 -v /home/BenVeghte/Ansel:/NAS -v /home/BenVeghte/docker/digital_picture_frame/goodbadimgs:/goodbadimgs --name picture-frame-server digitalpictureframeserver &
-sleep 15s
+sleep 120s
 export DISPLAY=:0
 xset dpms force on
 xset s noblank
