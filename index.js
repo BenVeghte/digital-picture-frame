@@ -104,6 +104,8 @@ function getnewimg() {
                 } catch(err) {
                     console.log(err);
                     console.log("Error in getting new image");
+                    getnewimg();
+                    return
                 }
                 
             }
