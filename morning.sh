@@ -7,7 +7,7 @@ DISPLAY=:0 xset dpms force on
 DISPLAY=:0 xset s noblank
 DISPLAY=:0 xset s off
 DISPLAY=:0 xset -dpms
-/usr/bin/chromium-browser --check-for-update-interval=604800 --noerrdialogs --disable-infobars --kiosk http://localhost:3000
+DISPLAY=:0 /usr/bin/chromium-browser --check-for-update-interval=604800 --noerrdialogs --disable-infobars --kiosk http://localhost:3000 &
 unclutter -idle 0.5 &
 
 
