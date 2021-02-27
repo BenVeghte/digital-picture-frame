@@ -162,6 +162,10 @@ function newConnection(socket) {
             return
             //console.log("Error reading image")
         });
+        
+    readStream.on("close", () => {
+        socket.emit('img-close', "")
+    });
 
     socket.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
 }

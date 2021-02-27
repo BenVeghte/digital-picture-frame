@@ -58,15 +58,19 @@
 
         socket.on('img-chunk', chunk => {
             imgChunks= imgChunks.concat(chunk);
-            var img = document.getElementById('img-stream');
-            img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
         });
+
         socket.on('img-path', path => {
             var img = document.getElementById('img-stream');
             img.setAttribute('title', path)
             var pathtext = document.getElementById('pathtext');
             pathtext.innerHTML = path;
-        })
+        });
+        
+        socket.on('img-close', chunk => {
+            var img = document.getElementById('img-stream');
+            img.setAttribute('src', 'data:image/jpeg;base64,'+ window.btoa(imgChunks));
+        });
 
     </script>
 </body>
