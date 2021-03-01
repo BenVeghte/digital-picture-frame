@@ -139,6 +139,10 @@ function pushimg() {
             //console.log("Error reading image")
         });
 
+        readStream.on("close", () => {
+            socket.emit('img-close', "")
+        });
+
     io.emit('img-path', '//Ansel/Pictures' + imgpath.slice(4));
 }
 
