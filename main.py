@@ -75,7 +75,7 @@ class PictureFrame:
             
     
     def get_image(self):
-        curr_path = self.base_path()
+        curr_path = self.base_path
         isIMG = False
         while isIMG is False:
             re_type, choice = self.get_next(curr_path)
@@ -89,7 +89,7 @@ class PictureFrame:
                 return choice
     
             
-    def __get_next(self, start_dir):
+    def get_next(self, start_dir):
         for i in range(5):
             choice = random.choice([f for f in start_dir.iterdir()])
             if choice.isdir():
