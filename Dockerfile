@@ -1,11 +1,11 @@
-FROM node:14
-WORKDIR /src/
-COPY package*.json ./
-RUN npm ci --only=production
+FROM python:3.95
+WORKDIR /code
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY index.html .
-COPY index.js .
+COPY main.py .
 COPY changefolder.html .
 COPY badimg.html . 
 COPY goodimg.html .
-EXPOSE 3000
-CMD ["node", "index.js"]
+EXPOSE 8080
+CMD ["python", "./main.py"]
