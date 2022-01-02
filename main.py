@@ -4,7 +4,7 @@ from flask_socketio import SocketIO, emit
 import random
 import base64
 app = Flask(__name__)
-socketio = SocketIO(app)
+socketio = SocketIO(app, async_mode='threading')
 file_map ={}
 frame = None
 
