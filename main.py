@@ -47,7 +47,6 @@ class PictureFrame:
         self.image = self.get_image()
         # self.image = "C:\\Users\\BenVe\\Desktop\\moon.png"
         self.connections = 0
-        self.img_types = ['.jpg', '.jpeg', '.png']
 
     def new_connection(self):
         self.connections = self.connections+1
@@ -94,7 +93,7 @@ class PictureFrame:
             choice = random.choice([f for f in start_dir.iterdir()])
             if choice.is_dir():
                 return("folder", choice)
-            elif choice.suffix.lower() in self.img_types :
+            elif choice.suffix.lower() in ['.jpg', '.jpeg', '.png'] :
                 return ("image", choice)
         return (False, False)
             
