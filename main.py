@@ -25,7 +25,7 @@ async def badimg():
     with open("badimg.html") as f:
         return Response(f.read(), content_type="text/html")
 
-@socketio.event
+@socketio.on("connect")
 def connect():
     global frame
     print("Device Connected")
@@ -37,7 +37,7 @@ def connect():
 async def message(sid, message):
     print(message)
 
-@socketio.event
+@socketio.on('disconnect')
 def disconnect():
     print("Device Connected")
 
@@ -58,15 +58,16 @@ class PictureFrame:
         self.connections = self.connections-1
     
     def broadcast(self):
-        emit("img-new")
+        SocketIO
+        emit("img-new", broadcast = True)
         with open(self.image, "rb") as img:
             b_read = img.read(500000)
-            emit("img-chunk", data=base64.b64encode(b_read))
+            emit("img-chunk", data=base64.b64encode(b_read), broadcast = True)
             while len(b_read) > 0:
                 b_read = img.read(500000)
-                emit("img-chunk", data=base64.b64encode(b_read))
+                emit("img-chunk", data=base64.b64encode(b_read), broadcast = True)
         emit("img-close")
-        emit("img-path", '//Ansel/Pictures' + self.image[4:])
+        emit("img-path", '//Ansel/Pictures' + self.image[4:], broadcast = True)
 
     def run(self):
         # self.get_image()
