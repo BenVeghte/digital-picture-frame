@@ -92,7 +92,7 @@ class PictureFrame:
     def get_next(self, start_dir):
         for i in range(5):
             choice = random.choice([f for f in start_dir.iterdir()])
-            if choice.isdir():
+            if choice.is_dir():
                 return("folder", choice)
             elif choice.suffix.lower() in self.img_types :
                 return ("image", choice)
