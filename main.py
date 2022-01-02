@@ -80,7 +80,7 @@ class PictureFrame:
         while isIMG is False:
             re_type, choice = self.get_next(curr_path)
             if re_type is False:
-                curr_path = self.base_path()
+                curr_path = self.base_path
             elif re_type == "folder":
                 curr_path = choice
             elif re_type == "image":
